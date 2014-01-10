@@ -84,6 +84,16 @@ public class ParserTest {
     }
     
     @Test
+    public void ParserInvalidShortSeveralOption_TTP() {
+        resetOptions();
+        parser.reset();
+        int lastOptionIndex = parser.parse(options, new String[] {"-bs", "10"});
+        Assert.assertEquals("Invalid last option index", -1, lastOptionIndex);
+        String expectedErr = appName + ": invalid option -- 'b'\nTry '" + appName + " --help' for more information.";
+        Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
+    }
+    
+    @Test
     public void ParserValidShortOptionMissingArg_TTP() {
         resetOptions();
         parser.reset();
@@ -93,14 +103,86 @@ public class ParserTest {
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
     
+    @Test
+    public void ParserValidSeveralShortOptionsMissingArg_TTP() {
+        resetOptions();
+        parser.reset();
+        int lastOptionIndex = parser.parse(options, new String[] {"-sv"});
+        Assert.assertEquals("Invalid last option index", -1, lastOptionIndex);
+        String expectedErr = appName + ": option 's' requires an argument\nTry '" + appName + " --help' for more information.";
+        Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
+    }
+    
+    @Test
+    public void ParserNoOptionNoArg_TTP() {
+        resetOptions();
+        parser.reset();
+        int lastOptionIndex = parser.parse(options, new String[] {"-"});
+        Assert.assertEquals("Invalid last option index", -1, lastOptionIndex);
+        String expectedErr = appName + ": invalid option -- '-'\nTry '" + appName + " --help' for more information.";
+        Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
+    }
+    
     
     /*
      **********************************************
      * Long name options
      **********************************************
      */
-    // TODO: test on long name options
+    @Test
+    public void ParserValidLongOptionNoArg_TTP() {
+        resetOptions();
+        parser.reset();
+        int lastOptionIndex = parser.parse(options, new String[] {"--version"});
+        Assert.assertEquals("Invalid last option index", 0, lastOptionIndex);
+        Assert.assertTrue("Option not set (but should have been)", optVersion.isSet());
+    }
     
+    @Test
+    public void ParserValidLongOptionWithArg_TTP() {
+        resetOptions();
+        parser.reset();
+        String val = "10";
+        int lastOptionIndex = parser.parse(options, new String[] {"--size=" + val});
+        Assert.assertEquals("Invalid last option index", 0, lastOptionIndex);
+        Assert.assertTrue("Option not set (but should have been)", optSize.isSet());
+        Assert.assertEquals("Wrong option's value", val, optSize.getValue());
+    }
+    
+    @Test
+    public void ParserInvalidLongOption_TTP() {
+        resetOptions();
+        parser.reset();
+        int lastOptionIndex = parser.parse(options, new String[] {"--test"});
+        Assert.assertEquals("Invalid last option index", -1, lastOptionIndex);
+        String expectedErr = appName + ": invalid option -- 'test'\nTry '" + appName + " --help' for more information.";
+        Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
+    }
+    
+    @Test
+    public void ParserMissingArgLongOption_TTP() {
+        resetOptions();
+        parser.reset();
+        int lastOptionIndex = parser.parse(options, new String[] {"--size"});
+        String expectedErr = appName + ": option 'size' requires an argument\nTry '" + appName + " --help' for more information.";
+        Assert.assertEquals("Invalid last option index", -1, lastOptionIndex);
+        Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
+    }
+    
+    @Test
+    public void ParserUnexpectedArgLongOption_TTP() {
+        resetOptions();
+        parser.reset();
+        int lastOptionIndex = parser.parse(options, new String[] {"--verbose=true"});
+        String expectedErr = appName + ": option 'verbose' does not require an argument\nTry '" + appName + " --help' for more information.";
+        Assert.assertEquals("Invalid last option index", -1, lastOptionIndex);
+        Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
+    }
+    
+    
+    /**
+     * Reset the options
+     */
     private void resetOptions() {
         optSize.setValue(null);
         optSize.setIsSet(false);

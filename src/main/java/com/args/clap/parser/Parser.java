@@ -11,10 +11,18 @@ public class Parser {
      * The differents type of errors
      **********************************************
      */
+    /**
+     * The option does not exist in the option set
+     */
     private static final int INVALID_OPTION = 1;
+    /**
+     * The option does not require an argument
+     */
     private static final int NO_ARG_VALUE = 2;
+    /**
+     * The option do require an argument
+     */
     private static final int NEEDS_ARG_VALUE = 3;
-    
     /*
      **********************************************
      * Attributes
@@ -121,8 +129,36 @@ public class Parser {
                 }
                 else {
                     /*
-                     * TODO: Long name option
+                     * Long name option
                      */
+                    String longName, value = null;
+                    longName = args[i].substring(2);
+                    // Split the option name and the value
+                    int equalSignIndex = args[i].indexOf('='); // index of '=', -1 if it not is this string
+                    if (equalSignIndex > -1) {
+                        // The argument is an option with argument
+                        longName = args[i].substring(2, equalSignIndex);
+                        value = args[i].substring(equalSignIndex + 1);
+                    }
+                    opt = options.getByLongName(longName);
+                    if (opt == null) {
+                        log(longName, INVALID_OPTION);
+                        return -1;
+                    }
+                    if (opt instanceof OptionWithValue) {
+                        if (value == null) {
+                            // The option expected an argument, but it was not specified
+                            log(longName, NEEDS_ARG_VALUE);
+                            return -1;
+                        }
+                        ((OptionWithValue) opt).setValue(value);
+                    }
+                    else if (value != null) {
+                        // The option does not expect an argument, but there is one
+                        log(longName, NO_ARG_VALUE);
+                        return -1;
+                    }
+                    opt.setIsSet(true);
                 }
                 lastOptionIndex = i;
             }
@@ -151,10 +187,9 @@ public class Parser {
         }
         errorMsg += "\nTry '" + appName + " --help' for more information.";
     }
-    
+
     /**
-     * Reset the state of the parser.
-     * Set the error message to null
+     * Reset the state of the parser. Set the error message to null
      */
     public void reset() {
         errorMsg = null;
