@@ -4,6 +4,7 @@ CLAP
 CLAP (Command-Line Argument Parser)
 
 - Description
+- 
 CLAP is Java library to parse easily the command-line argument of a java program.
 To use it, you have to create an OptionSet and fill it with options.
 Then, the parser will modify the options (if defined, if there's a value...).
