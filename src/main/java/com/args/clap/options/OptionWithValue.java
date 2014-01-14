@@ -119,7 +119,7 @@ public class OptionWithValue extends Option {
     /**
      * Set a new value for this option
      *
-     * @param set The new value
+     * @param value The new value
      */
     public void setValue(String value) {
         this.value = value;
