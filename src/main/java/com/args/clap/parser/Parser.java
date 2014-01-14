@@ -81,7 +81,7 @@ public class Parser {
      * if an error was detected
      */
     public int parse(OptionSet options, String[] args) {
-        int i, lastOptionIndex = 0;
+        int i, lastOptionIndex = -1;
         for (i = 0; i < args.length; i++) {
             if (args[i].charAt(0) == '-') {
                 if (args[i].length() == 1) {
@@ -124,9 +124,9 @@ public class Parser {
                             log(String.valueOf(shortName), NEEDS_ARG_VALUE);
                             return -1;
                         }
-                        opt.setIsSet(true);
                         ((OptionWithValue) opt).setValue(args[++i]);
                     }
+                    opt.setIsSet(true);
                 }
                 else {
                     /*
