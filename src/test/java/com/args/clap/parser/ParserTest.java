@@ -59,7 +59,7 @@ public class ParserTest {
         resetOptions();
         parser.reset();
         int lastOptionIndex = parser.parse(options, new String[] {"-s", "10"});
-        Assert.assertEquals("Invalid last option index", 1, lastOptionIndex);
+        Assert.assertEquals("Invalid last option index", 2, lastOptionIndex);
         Assert.assertTrue("Option not set (but should have been)", optSize.isSet());
     }
     
@@ -68,7 +68,7 @@ public class ParserTest {
         resetOptions();
         parser.reset();
         int lastOptionIndex = parser.parse(options, new String[] {"-vs", "10"});
-        Assert.assertEquals("Invalid last option index", 1, lastOptionIndex);
+        Assert.assertEquals("Invalid last option index", 2, lastOptionIndex);
         Assert.assertTrue("Option not set (but should have been)", optSize.isSet());
         Assert.assertTrue("Option not set (but should have been)", optVerbose.isSet());
     }
@@ -134,7 +134,7 @@ public class ParserTest {
         resetOptions();
         parser.reset();
         int lastOptionIndex = parser.parse(options, new String[] {"--version"});
-        Assert.assertEquals("Invalid last option index", 0, lastOptionIndex);
+        Assert.assertEquals("Invalid last option index", 1, lastOptionIndex);
         Assert.assertTrue("Option not set (but should have been)", optVersion.isSet());
     }
     
@@ -144,7 +144,7 @@ public class ParserTest {
         parser.reset();
         String val = "10";
         int lastOptionIndex = parser.parse(options, new String[] {"--size=" + val});
-        Assert.assertEquals("Invalid last option index", 0, lastOptionIndex);
+        Assert.assertEquals("Invalid last option index", 1, lastOptionIndex);
         Assert.assertTrue("Option not set (but should have been)", optSize.isSet());
         Assert.assertEquals("Wrong option's value", val, optSize.getValue());
     }

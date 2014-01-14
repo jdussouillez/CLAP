@@ -72,12 +72,13 @@ public class Parser {
      */
     /**
      * Parse the arguments. At the end, the options (param) are changed
-     * (attribute : "set" and "value"). Returns the last option index (in the
-     * args array), -1 in an error was detected.
+     * (attribute : "set" and "value"). Returns the first non-option argument
+     * index (in the args array), -1 in an error was detected.
      *
      * @param options The option collection
      * @param args The arguments
-     * @return The last option index, -1 if an error was detected
+     * @return The first non-option argument index (last option index + 1), -1
+     * if an error was detected
      */
     public int parse(OptionSet options, String[] args) {
         int i, lastOptionIndex = 0;
@@ -163,7 +164,7 @@ public class Parser {
                 lastOptionIndex = i;
             }
         }
-        return lastOptionIndex;
+        return lastOptionIndex + 1; // First non-option argument
     }
 
     /**
