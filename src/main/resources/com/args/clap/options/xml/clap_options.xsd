@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!--
+    The order of the option(-value) tags is not important, you can start
+    with an option, then an option-value, then an option again...
+    But the order inside an option has to be respected :
+    shortname, longname, helpmsg (value-name for option-value)
+    None of these elements are required to validate the XML.
+    But you can not create an empty/invalid option because the data are verified
+    by the Option constructor.
+    -->
+    
+    <!-- Elements -->
+    <xsd:element name="options">
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="option" type="type_option" />
+                <xsd:element name="option-value" type="type_option-value" />
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Types -->
+    <xsd:complexType name="type_option">
+        <xsd:sequence>
+            <xsd:element name="shortname" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="longname" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="helpmsg" type="xsd:string" minOccurs="0" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="type_option-value">
+        <xsd:complexContent>
+            <xsd:extension base="type_option">
+                <xsd:sequence>
+                    <xsd:element name="value-name" type="xsd:string" minOccurs="0" maxOccurs="1" />
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

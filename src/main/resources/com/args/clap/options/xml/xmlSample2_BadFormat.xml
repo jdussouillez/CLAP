@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<options>
+    <option-value>
+        <shortname>l</shortname>
+        <longname>lines</longname>
+        <!-- Error : It has to be <helpmsg> (or no <helpmsg> tag) and then <value-name> -->
+        <value-name>NBLINES</value-name>
+        <helpmsg>output only NBLINES lines</helpmsg>
+    </option-value>
+    <option>
+        <shortname>n</shortname>
+        <longname>number</longname>
+        <helpmsg>number all output lines</helpmsg>
+    </option>
+    <option>
+        <longname>help</longname>
+        <helpmsg>display this help and exit</helpmsg>
+    </option>
+    <option>
+        <longname>version</longname>
+        <helpmsg>output version information and exit</helpmsg>
+    </option>
+</options>
