@@ -187,6 +187,14 @@ public class ParserTest {
         Assert.assertEquals("Invalid first non-option argument index", 0, firstNonOptionArgIndex);
     }
     
+//    @Test
+//    public void ParserOptionBetweenOptions_TTP() {
+//        resetOptions();
+//        parser.reset();
+//        int firstNonOptionArgIndex = parser.parse(options, new String[] {"file1 -n file2"});
+//        Assert.assertEquals("Invalid first non-option argument index", 0, firstNonOptionArgIndex);
+//    }
+    
     @Test
     public void ParserNoOptionsDetectedNoArgs_TTP() {
         resetOptions();

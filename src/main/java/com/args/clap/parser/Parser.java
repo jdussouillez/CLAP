@@ -23,6 +23,10 @@ public class Parser {
      * The option do require an argument
      */
     private static final int NEEDS_ARG_VALUE = 3;
+    /**
+     * Unexpected argument (a non-option argument between options)
+     */
+    private static final int UNEXPECTED_ARG = 4;
     /*
      **********************************************
      * Attributes
@@ -82,10 +86,17 @@ public class Parser {
      */
     public int parse(OptionSet options, String[] args) {
         int i, lastOptionIndex = -1;
+        boolean nonOptionArgDetected = false;
         for (i = 0; i < args.length; i++) {
             if (args[i].charAt(0) == '-') {
                 if (args[i].length() == 1) {
                     log("-", INVALID_OPTION);
+                    return -1;
+                }
+                if (nonOptionArgDetected) {
+                    // This arg is an option, but the previous arg was not,
+                    // it's an error (this arg is unexpected)
+                    log(args[i], UNEXPECTED_ARG);
                     return -1;
                 }
                 Option opt;
@@ -163,6 +174,10 @@ public class Parser {
                 }
                 lastOptionIndex = i;
             }
+            else {
+                // This arg is not an option
+                nonOptionArgDetected = true;
+            }
         }
         return lastOptionIndex + 1; // First non-option argument
     }
@@ -184,6 +199,9 @@ public class Parser {
                 break;
             case NEEDS_ARG_VALUE:
                 errorMsg += "option '" + opt + "' requires an argument";
+                break;
+            case UNEXPECTED_ARG:
+                errorMsg += "unexpected option '" + opt + "'";
                 break;
         }
         errorMsg += "\nTry '" + appName + " --help' for more information.";
