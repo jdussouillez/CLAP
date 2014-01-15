@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<options>
+    <option-value>
+        <!-- Error: option has no name ! -->
+        <helpmsg>output only NBLINES lines</helpmsg>
+        <value-name>NBLINES</value-name>
+    </option-value>
+    <option>
+        <shortname>n</shortname>
+        <longname>number</longname>
+        <helpmsg>number all output lines</helpmsg>
+    </option>
+    <option>
+        <helpmsg>display this help and exit</helpmsg>
+    </option>
+    <option>
+        <longname>version</longname>
+        <helpmsg>output version information and exit</helpmsg>
+    </option>
+</options>

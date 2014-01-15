@@ -1,6 +1,5 @@
 package com.args.clap.options.xml;
 
-import com.args.clap.options.InvalidOptionNamesException;
 import com.args.clap.options.Option;
 import com.args.clap.options.OptionSet;
 import com.args.clap.options.OptionWithValue;
@@ -33,14 +32,32 @@ public class XMLOptionReaderTest {
     }
 
     /*
-     * Test-to-pass
+     * Test-to-fail
      */
     @Test
-    public void XML_NoNameOption_TTP() throws URISyntaxException, ParserConfigurationException, IOException {
+    public void XML_NoNameOption_TTF() throws URISyntaxException, ParserConfigurationException, IOException {
         try {
             OptionSet options = XMLOptionReader.parse(getClass().getResource("xmlSample5_NoNameOption.xml").toString().replace("file:", ""));
         } catch (SAXException ex) {
             Assert.assertEquals("Wrong error", ex.getMessage(), "Option creation : an option has to contain at least a short or a long name");
+        }
+    }
+    
+    @Test
+    public void XML_BadXMLFormat_TTF() throws URISyntaxException, ParserConfigurationException, IOException {
+        try {
+            OptionSet options = XMLOptionReader.parse(getClass().getResource("xmlSample2_BadFormat.xml").toString().replace("file:", ""));
+        } catch (SAXException ex) {
+            Assert.assertTrue("Wrong error", ex.getMessage().contains("Invalid content was found starting with element 'helpmsg'"));
+        }
+    }
+    
+    @Test
+    public void XML_OptionWithValueNoNames() throws URISyntaxException, ParserConfigurationException, IOException {
+        try {
+            OptionSet options = XMLOptionReader.parse(getClass().getResource("xmlSample6_OptionWithValueNoNames.xml").toString().replace("file:", ""));
+        } catch (SAXException ex) {
+            Assert.assertTrue("Wrong error", ex.getMessage().contains("Option creation : an option has to contain at least a short or a long name"));
         }
     }
 }
