@@ -12,9 +12,10 @@ import javax.xml.validation.Validator;
 import org.xml.sax.SAXException;
 
 /**
- * Validate a xml file which describes the CLAP options using a schema.
+ * Validate a xml file which describes the CLAP options using a schema. This
+ * class is not public because it is used by XMLOptionReader only.
  */
-public class XMLValidator {
+class XMLValidator {
 
     /**
      * Filename of the schema.
@@ -77,6 +78,11 @@ public class XMLValidator {
         return validXml;
     }
 
+    /*
+     **********************************************
+     * Methods
+     **********************************************
+     */
     /**
      * Validates the xml file using the CLAP schema file. Changes the value to
      * the "validXml" and "error" attribute

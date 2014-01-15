@@ -131,7 +131,9 @@ public class OptionWithValue extends Option {
      * @param valueName The name of the value
      */
     public void setValueName(String valueName) {
-        this.valueName = valueName;
+        if (valueName != null) {
+            this.valueName = valueName;
+        }
     }
 
     /**

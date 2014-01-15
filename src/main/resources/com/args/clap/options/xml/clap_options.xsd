@@ -23,8 +23,8 @@
     <!-- Types -->
     <xsd:complexType name="type_option">
         <xsd:sequence>
-            <xsd:element name="shortname" type="xsd:string" minOccurs="0" maxOccurs="1" />
-            <xsd:element name="longname" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="shortname" type="type_shortname" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="longname" type="type_longname" minOccurs="0" maxOccurs="1" />
             <xsd:element name="helpmsg" type="xsd:string" minOccurs="0" maxOccurs="1" />
         </xsd:sequence>
     </xsd:complexType>
@@ -38,4 +38,17 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
+    
+    <xsd:simpleType name="type_shortname">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1" />
+            <xsd:maxLength value="1" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:simpleType name="type_longname">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="2" />
+        </xsd:restriction>
+    </xsd:simpleType>
 </xsd:schema>
