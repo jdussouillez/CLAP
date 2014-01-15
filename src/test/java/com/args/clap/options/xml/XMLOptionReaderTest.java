@@ -42,7 +42,7 @@ public class XMLOptionReaderTest {
             Assert.assertEquals("Wrong error", ex.getMessage(), "Option creation : an option has to contain at least a short or a long name");
         }
     }
-    
+
     @Test
     public void XML_BadXMLFormat_TTF() throws URISyntaxException, ParserConfigurationException, IOException {
         try {
@@ -51,7 +51,7 @@ public class XMLOptionReaderTest {
             Assert.assertTrue("Wrong error", ex.getMessage().contains("Invalid content was found starting with element 'helpmsg'"));
         }
     }
-    
+
     @Test
     public void XML_OptionWithValueNoNames() throws URISyntaxException, ParserConfigurationException, IOException {
         try {
