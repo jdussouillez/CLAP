@@ -110,6 +110,6 @@ public class OptionWithValueTest {
                                                       InvalidOptionNamesException {
         OptionWithValue o = new OptionWithValue('s');
         o.setValueName("SIZE");
-        Assert.assertEquals("-s SIZE", o.toString());
+        Assert.assertEquals("SIZE", o.getValueName());
     }
 }

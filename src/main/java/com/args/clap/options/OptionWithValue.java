@@ -124,6 +124,15 @@ public class OptionWithValue extends Option {
     public void setValue(String value) {
         this.value = value;
     }
+    
+    /**
+     * Returns the option value name
+     *
+     * @return The name of the value, null otherwise.
+     */
+    public String getValueName() {
+        return valueName;
+    }
 
     /**
      * Set a new value name for this option (for the help message)
