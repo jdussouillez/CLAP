@@ -10,6 +10,7 @@ import java.io.StringWriter;
 import java.util.Iterator;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -26,7 +27,7 @@ public class XMLOptionWriter {
 
     /**
      * Creates a XML file describing the options given in parameter.
-     * 
+     *
      * @param options The options set
      * @param xmlFilename Path of the XML file
      * @throws FileNotFoundException XML filepath does not exists
@@ -45,7 +46,7 @@ public class XMLOptionWriter {
 
     /**
      * Returns a XML string describing the options given in parameter.
-     * 
+     *
      * @param options The options set
      * @return The XML string
      * @throws ParserConfigurationException XML parser error
@@ -66,6 +67,8 @@ public class XMLOptionWriter {
         }
         // Write result in a string
         Transformer trans = TransformerFactory.newInstance().newTransformer();
+        trans.setOutputProperty(OutputKeys.INDENT, "yes");
+        trans.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
         StringWriter writer = new StringWriter();
         trans.transform(new DOMSource(doc), new StreamResult(writer));
         xmlStr = writer.getBuffer().toString();
@@ -74,7 +77,7 @@ public class XMLOptionWriter {
 
     /**
      * Returns a XML <option> tag built with the option using a XML document.
-     * 
+     *
      * @param opt Option used to create the string
      * @param doc XML document
      * @return XML element
@@ -102,7 +105,7 @@ public class XMLOptionWriter {
 
     /**
      * Returns a XML tag element.
-     * 
+     *
      * @param content Content of the tag
      * @param elementName Name of the tag
      * @param doc XML document

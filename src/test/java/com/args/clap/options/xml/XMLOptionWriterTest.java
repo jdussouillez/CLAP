@@ -30,17 +30,18 @@ public class XMLOptionWriterTest {
         options.add(new Option('v', "verbose"));
         options.add(new Option((char) 0, "help", "display this help and exit"));
         XMLOptionWriter xmlWriter = new XMLOptionWriter();
-        String expectedStr = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
-                + "<options>"
-                + "<option>"
-                + "<shortname>v</shortname>"
-                + "<longname>verbose</longname>"
-                + "</option>"
-                + "<option>"
-                + "<longname>help</longname>"
-                + "<helpmsg>display this help and exit</helpmsg>"
-                + "</option>"
-                + "</options>";
+        String expectedStr = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
+                + "<options>\n"
+                + "  <option>\n"
+                + "    <shortname>v</shortname>\n"
+                + "    <longname>verbose</longname>\n"
+                + "  </option>\n"
+                + "  <option>\n"
+                + "    <longname>help</longname>\n"
+                + "    <helpmsg>display this help and exit</helpmsg>\n"
+                + "  </option>\n"
+                + "</options>\n";
+        System.out.println(XMLOptionWriter.makeOptions(options));
         Assert.assertEquals(expectedStr, XMLOptionWriter.makeOptions(options));
     }
 
@@ -55,13 +56,13 @@ public class XMLOptionWriterTest {
         OptionWithValue optSize = new OptionWithValue('s');
         optSize.setValueName("SIZE");
         options.add(optSize);
-        String expectedStr = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
-                + "<options>"
-                + "<option-value>"
-                + "<shortname>s</shortname>"
-                + "<value-name>SIZE</value-name>"
-                + "</option-value>"
-                + "</options>";
+        String expectedStr = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
+                + "<options>\n"
+                + "  <option-value>\n"
+                + "    <shortname>s</shortname>\n"
+                + "    <value-name>SIZE</value-name>\n"
+                + "  </option-value>\n"
+                + "</options>\n";
         Assert.assertEquals(expectedStr, XMLOptionWriter.makeOptions(options));
     }
 
