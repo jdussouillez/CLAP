@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.args</groupId>
-    <artifactId>CLAP</artifactId>
+    <artifactId>JCLAP</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>CLAP</name>
+    <name>JCLAP</name>
     <url>http://maven.apache.org</url>
 
     <properties>
