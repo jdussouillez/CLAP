@@ -20,7 +20,7 @@ class XMLValidator {
     /**
      * Filename of the schema.
      */
-    public static final String xsdFilename = "clap_options.xsd";
+    public static final String xsdFilename = "jclap_options.xsd";
     /*
      **********************************************
      * Attributes
