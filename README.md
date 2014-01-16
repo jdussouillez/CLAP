@@ -1,21 +1,21 @@
-CLAP
+JCLAP
 ====
 
-CLAP (Command-Line Argument Parser) is a Java library to parse easily the command-line argument of a java program.
+JCLAP (Java Command-Line Argument Parser) is a Java library to parse easily the command-line argument of a java program.
 
 How to build
 -----------
 
-Build CLAP jar:
+Build JCLAP jar:
 ``` bash
 mvn install # or "mvn clean install" to clean and build
 ```
 
 
-Build and run CLAP examples ("samples" folder):
+Build and run JCLAP examples ("samples" folder):
 ``` bash
 ant jar
-java -jar dist/CLAP_project_name.jar
+java -jar dist/JCLAP_project_name.jar
 ```
 
 
@@ -38,7 +38,7 @@ Options creation
 ----------------
 
 You can create the options : 
-- In the Java code, using the Option and OptionWithValue classes (see "samples/CLAP_FileReader" project).
+- In the Java code, using the Option and OptionWithValue classes (see "samples/JCLAP_FileReader" project).
 
 Note: The options Java objects can be exported in a XML file.
 
@@ -52,7 +52,7 @@ optNumber = new Option('n', "number", "number all output lines");
 optHelp = new Option((char) 0, "help", "display this help and exit");
 ```
 
-- Using a XML file (see "samples/CLAP_FileReader_XMLOptions" project)
+- Using a XML file (see "samples/JCLAP_FileReader_XMLOptions" project)
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -79,7 +79,7 @@ optHelp = new Option((char) 0, "help", "display this help and exit");
 Tools
 -----
 
-- CLAP is a Maven project (Maven 3), and Java 7 is required (see pom.xml).
-- CLAP samples are ANT projects (ANT 1.9)
+- JCLAP is a Maven project (Maven 3), and Java 7 is required (see pom.xml).
+- JCLAP samples are ANT projects (ANT 1.9)
 - JUnit 4.11 is used for the unit tests.
 - JaCoCo (Netbeans plugin) is used to check the unit tests coverage.
