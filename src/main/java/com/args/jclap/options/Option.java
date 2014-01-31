@@ -198,7 +198,7 @@ public class Option {
      * @return true if the longname is valid, false otherwise.
      */
     public static boolean isValidLongName(String longName) {
-        return longName == null || (longName != null && longName.matches(LONGNAME_PATTERN));
+        return longName == null || longName.matches(LONGNAME_PATTERN);
     }
 
     /**
@@ -243,10 +243,7 @@ public class Option {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         final Option other = (Option) obj;

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * Simple (and ugly) filereader program using CLAP
+ * Simple (and ugly) filereader program using JCLAP
  */
 public class JCLAP_FileReader {
 

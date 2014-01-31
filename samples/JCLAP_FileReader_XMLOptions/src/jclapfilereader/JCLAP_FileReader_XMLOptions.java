@@ -14,7 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 /**
- * Simple (and ugly) filereader program using CLAP
+ * Simple (and ugly) filereader program using JCLAP
  */
 public class JCLAP_FileReader_XMLOptions {
 

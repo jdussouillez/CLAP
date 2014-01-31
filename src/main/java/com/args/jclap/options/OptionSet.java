@@ -16,15 +16,6 @@ public class OptionSet extends LinkedHashSet<Option> {
 
     /*
      **********************************************
-     * Constructors
-     **********************************************
-     */
-//    public OptionSet(StringReader xmlContent) {
-//        // TODO: SAX Parser in com.args.clap.options.xml
-//    }
-
-    /*
-     **********************************************
      * Methods
      **********************************************
      */

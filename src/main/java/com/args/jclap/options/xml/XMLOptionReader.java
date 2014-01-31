@@ -119,7 +119,7 @@ public class XMLOptionReader extends DefaultHandler {
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
         if (inShortName) {
-            shortName = new String(ch, start, length).charAt(0);
+            shortName = ch[start];
         }
         else if (inLongName) {
             longName = new String(ch, start, length);
