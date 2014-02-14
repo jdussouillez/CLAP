@@ -79,7 +79,8 @@ optHelp = new Option((char) 0, "help", "display this help and exit");
 Tools
 -----
 
-- JCLAP is a Maven project (Maven 3), and Java 7 is required (see pom.xml).
-- JCLAP samples are ANT projects (ANT 1.9)
+- JCLAP is a Maven 3 project.
+- Java 7 is required (see pom.xml).
+- Samples are ANT projects (ANT 1.9).
 - JUnit 4.11 is used for the unit tests.
 - JaCoCo (Netbeans plugin) is used to check the unit tests coverage.
