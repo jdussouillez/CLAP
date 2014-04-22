@@ -1,10 +1,10 @@
 package jclapfilereader;
 
-import com.args.jclap.options.Option;
-import com.args.jclap.options.OptionSet;
-import com.args.jclap.options.OptionWithValue;
-import com.args.jclap.options.xml.XMLOptionReader;
-import com.args.jclap.parser.Parser;
+import org.jd.jclap.options.Option;
+import org.jd.jclap.options.OptionSet;
+import org.jd.jclap.options.OptionWithValue;
+import org.jd.jclap.options.xml.XMLOptionReader;
+import org.jd.jclap.parser.Parser;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -25,7 +25,7 @@ public class JCLAP_FileReader_XMLOptions {
         Parser parser;
         OptionWithValue optLines;
         Option optNumber, optHelp, optVersion;
-        int firstFileIndex;
+        String[] files;
         /*
          * Load options from XML
          */
@@ -43,8 +43,8 @@ public class JCLAP_FileReader_XMLOptions {
          * Args parsing
          */
         parser = new Parser("CLAPTest_FileReader");
-        firstFileIndex = parser.parse(options, args);
-        if (firstFileIndex == -1) {
+        files = parser.parse(options, args);
+        if (files == null) {
             // Parsing error
             System.err.println(parser.getErrorMsg());
             return;
@@ -77,7 +77,6 @@ public class JCLAP_FileReader_XMLOptions {
             }
         }
         try {
-            String files[] = Arrays.copyOfRange(args, firstFileIndex, args.length);
             if (files.length == 0) {
                 System.err.println("Missing file(s)");
                 return;
@@ -94,8 +93,8 @@ public class JCLAP_FileReader_XMLOptions {
         BufferedReader reader;
         String line;
         int num = 1;
-        for (int i = 0; i < files.length; i++) {
-            reader = new BufferedReader(new FileReader(files[i]));
+        for (String file : files) {
+            reader = new BufferedReader(new FileReader(file));
             while ((line = reader.readLine()) != null && (lines == -1 || num < lines)) {
                 System.out.println(((number) ? num + " " : "") + line);
                 num++;

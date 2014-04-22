@@ -1,10 +1,10 @@
 package jclapoptionsexport;
 
-import com.args.jclap.options.Option;
-import com.args.jclap.options.OptionCreationException;
-import com.args.jclap.options.OptionSet;
-import com.args.jclap.options.OptionWithValue;
-import com.args.jclap.options.xml.XMLOptionWriter;
+import org.jd.jclap.options.Option;
+import org.jd.jclap.options.OptionCreationException;
+import org.jd.jclap.options.OptionSet;
+import org.jd.jclap.options.OptionWithValue;
+import org.jd.jclap.options.xml.XMLOptionWriter;
 import java.io.FileNotFoundException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;

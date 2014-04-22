@@ -195,13 +195,13 @@ public class ParserTest {
         Assert.assertTrue("Wrong arg", otherArgs[0].equals("file1"));
         Assert.assertTrue("Wrong arg", otherArgs[1].equals("file2"));
     }
-    
+
     @Test
     public void ParserInvalidOptionBetweenOptions_TTP() {
         resetOptions();
         parser.reset();
         String[] otherArgs = parser.parse(options, new String[] {"file1", "-n", "file2"});
-         Assert.assertNull(otherArgs);
+        Assert.assertNull(otherArgs);
     }
 
     @Test
