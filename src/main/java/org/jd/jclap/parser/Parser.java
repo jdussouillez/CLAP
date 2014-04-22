@@ -16,19 +16,19 @@ public class Parser {
     /**
      * The option does not exist in the option set
      */
-    private static final int INVALID_OPTION = 1;
+    protected static final int INVALID_OPTION = 1;
     /**
      * The option does not require an argument
      */
-    private static final int NO_ARG_VALUE = 2;
+    protected static final int NO_ARG_VALUE = 2;
     /**
      * The option do require an argument
      */
-    private static final int NEEDS_ARG_VALUE = 3;
+    protected static final int NEEDS_ARG_VALUE = 3;
     /**
      * Unexpected argument (a non-option argument between options)
      */
-    private static final int UNEXPECTED_ARG = 4;
+    protected static final int UNEXPECTED_ARG = 4;
     /*
      **********************************************
      * Attributes
@@ -37,11 +37,11 @@ public class Parser {
     /**
      * Error message. Set by the parser when a error is detected.
      */
-    private String errorMsg;
+    protected String errorMsg;
     /**
      * Name of the application. This name is used to generate the error messages
      */
-    private String appName;
+    protected String appName;
 
     /*
      **********************************************
@@ -182,7 +182,7 @@ public class Parser {
      * @param opt       The option name which is the source of the error
      * @param errorType The type of the error
      */
-    private void log(String opt, int errorType) {
+    protected void log(String opt, int errorType) {
         errorMsg = appName + ": ";
         switch (errorType) {
             case INVALID_OPTION:
