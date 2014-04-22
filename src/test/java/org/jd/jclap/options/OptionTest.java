@@ -100,7 +100,7 @@ public class OptionTest {
 
     @Test
     public void invalidCharacterLongName_TTP() {
-        Assert.assertFalse(Option.isValidLongName("sort-by-name"));
+        Assert.assertFalse(Option.isValidLongName("sortby?name"));
     }
 
     /*

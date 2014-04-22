@@ -10,7 +10,7 @@ public class Option {
      * Defines the pattern for an option's long name. The long name has to
      * contains at least 2 letters or digits.
      */
-    public static final String LONGNAME_PATTERN = "[a-zA-Z0-9]{2,}";
+    public static final String LONGNAME_PATTERN = "[a-zA-Z0-9-_]{2,}";
 
     /*
      **********************************************
