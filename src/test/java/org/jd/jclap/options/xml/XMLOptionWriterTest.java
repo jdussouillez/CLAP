@@ -1,16 +1,16 @@
 package org.jd.jclap.options.xml;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import org.jd.jclap.options.InvalidOptionLongNameException;
 import org.jd.jclap.options.InvalidOptionNamesException;
 import org.jd.jclap.options.InvalidOptionShortNameException;
 import org.jd.jclap.options.Option;
 import org.jd.jclap.options.OptionSet;
 import org.jd.jclap.options.OptionWithValue;
-import java.io.File;
-import java.io.FileNotFoundException;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
 import org.junit.Assert;
 import org.junit.Test;
 

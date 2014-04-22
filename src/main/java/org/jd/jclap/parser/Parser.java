@@ -1,5 +1,7 @@
 package org.jd.jclap.parser;
 
+import java.util.LinkedList;
+import java.util.List;
 import org.jd.jclap.options.Option;
 import org.jd.jclap.options.OptionSet;
 import org.jd.jclap.options.OptionWithValue;
@@ -81,23 +83,17 @@ public class Parser {
      *
      * @param options The option collection
      * @param args    The arguments
-     * @return The first non-option argument index (last option index + 1), -1
-     *         if an error was detected
+     * @return        The non-optional arguments (ex : files, strings...), null
+     *                an error was detected.
      */
-    public int parse(OptionSet options, String[] args) {
-        int i, lastOptionIndex = -1;
-        boolean nonOptionArgDetected = false;
+    public String[] parse(OptionSet options, String[] args) {
+        int i;
+        List<String> otherArgs = new LinkedList<>();
         for (i = 0; i < args.length; i++) {
             if (args[i].charAt(0) == '-') {
                 if (args[i].length() == 1) {
                     log("-", INVALID_OPTION);
-                    return -1;
-                }
-                if (nonOptionArgDetected) {
-                    // This arg is an option, but the previous arg was not,
-                    // it's an error (this arg is unexpected)
-                    log(args[i], UNEXPECTED_ARG);
-                    return -1;
+                    return null;
                 }
                 Option opt;
                 if (args[i].charAt(1) != '-') {
@@ -113,12 +109,12 @@ public class Parser {
                         opt = options.getByShortName(shortName);
                         if (opt == null) {
                             log(String.valueOf(shortName), INVALID_OPTION);
-                            return -1;
+                            return null;
                         }
                         if (opt instanceof OptionWithValue) {
                             // There is only options without argument in this loop
                             log(String.valueOf(shortName), NEEDS_ARG_VALUE);
-                            return -1;
+                            return null;
                         }
                         opt.setIsSet(true);
                     }
@@ -128,12 +124,12 @@ public class Parser {
                     opt = options.getByShortName(shortName);
                     if (opt == null) {
                         log(String.valueOf(shortName), INVALID_OPTION);
-                        return -1;
+                        return null;
                     }
                     if (opt instanceof OptionWithValue) {
                         if (i >= args.length - 1) {
                             log(String.valueOf(shortName), NEEDS_ARG_VALUE);
-                            return -1;
+                            return null;
                         }
                         ((OptionWithValue) opt).setValue(args[++i]);
                     }
@@ -155,31 +151,29 @@ public class Parser {
                     opt = options.getByLongName(longName);
                     if (opt == null) {
                         log(longName, INVALID_OPTION);
-                        return -1;
+                        return null;
                     }
                     if (opt instanceof OptionWithValue) {
                         if (value == null) {
                             // The option expected an argument, but it was not specified
                             log(longName, NEEDS_ARG_VALUE);
-                            return -1;
+                            return null;
                         }
                         ((OptionWithValue) opt).setValue(value);
                     }
                     else if (value != null) {
                         // The option does not expect an argument, but there is one
                         log(longName, NO_ARG_VALUE);
-                        return -1;
+                        return null;
                     }
                     opt.setIsSet(true);
                 }
-                lastOptionIndex = i;
             }
             else {
-                // This arg is not an option
-                nonOptionArgDetected = true;
+                otherArgs.add(args[i]);
             }
         }
-        return lastOptionIndex + 1; // First non-option argument
+        return otherArgs.toArray(new String[0]);
     }
 
     /**

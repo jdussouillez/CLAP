@@ -56,7 +56,7 @@ public class Option {
      * @throws InvalidOptionLongNameException  Thrown if the long name does not
      *                                         correspond to the pattern.
      * @throws InvalidOptionNamesException     Thrown if both names are not
-     *                                         precised, 0 (short name) and null (long name).
+     *                                         specified, 0 (short name) and null (long name).
      */
     public Option(char shortName, String longName, String helpMessage) throws InvalidOptionShortNameException,
                                                                               InvalidOptionLongNameException,
@@ -86,7 +86,7 @@ public class Option {
      * @throws InvalidOptionLongNameException  Thrown if the long name does not
      *                                         correspond to the pattern.
      * @throws InvalidOptionNamesException     Thrown if both names are not
-     *                                         precised, 0 (short name) and null (long name).
+     *                                         specified, 0 (short name) and null (long name).
      */
     public Option(char shortName, String longName) throws InvalidOptionShortNameException,
                                                           InvalidOptionLongNameException,
@@ -103,7 +103,7 @@ public class Option {
      * @throws InvalidOptionLongNameException  Thrown if the long name does not
      *                                         correspond to the pattern.
      * @throws InvalidOptionNamesException     Thrown if both names are not
-     *                                         precised, 0 (short name) and null (long name).
+     *                                         specified, 0 (short name) and null (long name).
      */
     public Option(char shortName) throws InvalidOptionShortNameException,
                                          InvalidOptionLongNameException,
@@ -120,7 +120,7 @@ public class Option {
      * @throws InvalidOptionLongNameException  Thrown if the long name does not
      *                                         correspond to the pattern.
      * @throws InvalidOptionNamesException     Thrown if both names are not
-     *                                         precised, 0 (short name) and null (long name).
+     *                                         specified, 0 (short name) and null (long name).
      */
     public Option(String longName) throws InvalidOptionShortNameException,
                                           InvalidOptionLongNameException,

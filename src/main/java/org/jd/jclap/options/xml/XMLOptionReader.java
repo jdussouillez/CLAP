@@ -1,19 +1,16 @@
 package org.jd.jclap.options.xml;
 
+import java.io.File;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import org.jd.jclap.options.InvalidOptionLongNameException;
 import org.jd.jclap.options.InvalidOptionNamesException;
 import org.jd.jclap.options.InvalidOptionShortNameException;
 import org.jd.jclap.options.Option;
 import org.jd.jclap.options.OptionSet;
 import org.jd.jclap.options.OptionWithValue;
-
-import java.io.File;
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

@@ -56,8 +56,8 @@ public class ParserTest {
     public void ParserOnlyOneShortOptionValid_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"-s", "10"});
-        Assert.assertEquals("Invalid first non-option argument index", 2, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"-s", "10"});
+        Assert.assertEquals("Other args: wrong number", 0, otherArgs.length);
         Assert.assertTrue("Option not set (but should have been)", optSize.isSet());
     }
 
@@ -65,8 +65,8 @@ public class ParserTest {
     public void ParserSeveralShortOptionsValid_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"-vs", "10"});
-        Assert.assertEquals("Invalid first non-option argument index", 2, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"-vs", "10"});
+        Assert.assertEquals("Other args: wrong number", 0, otherArgs.length);
         Assert.assertTrue("Option not set (but should have been)", optSize.isSet());
         Assert.assertTrue("Option not set (but should have been)", optVerbose.isSet());
     }
@@ -75,8 +75,8 @@ public class ParserTest {
     public void ParserInvalidShortOption_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"-s", "10", "-b"});
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"-s", "10", "-b"});
+        Assert.assertNull(otherArgs);
         String expectedErr = appName + ": invalid option -- 'b'\nTry '" + appName + " --help' for more information.";
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
@@ -85,8 +85,8 @@ public class ParserTest {
     public void ParserInvalidShortSeveralOption_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"-bs", "10"});
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"-bs", "10"});
+        Assert.assertNull(otherArgs);
         String expectedErr = appName + ": invalid option -- 'b'\nTry '" + appName + " --help' for more information.";
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
@@ -95,8 +95,8 @@ public class ParserTest {
     public void ParserValidShortOptionMissingArg_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"-s"});
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"-s"});
+        Assert.assertNull(otherArgs);
         String expectedErr = appName + ": option 's' requires an argument\nTry '" + appName + " --help' for more information.";
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
@@ -105,8 +105,8 @@ public class ParserTest {
     public void ParserValidSeveralShortOptionsMissingArg_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"-sv"});
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"-sv"});
+        Assert.assertNull(otherArgs);
         String expectedErr = appName + ": option 's' requires an argument\nTry '" + appName + " --help' for more information.";
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
@@ -115,8 +115,8 @@ public class ParserTest {
     public void ParserNoOptionNoArg_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"-"});
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"-"});
+        Assert.assertNull(otherArgs);
         String expectedErr = appName + ": invalid option -- '-'\nTry '" + appName + " --help' for more information.";
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
@@ -130,8 +130,8 @@ public class ParserTest {
     public void ParserValidLongOptionNoArg_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"--version"});
-        Assert.assertEquals("Invalid first non-option argument index", 1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"--version"});
+        Assert.assertEquals("Other args: wrong number", 0, otherArgs.length);
         Assert.assertTrue("Option not set (but should have been)", optVersion.isSet());
     }
 
@@ -140,8 +140,8 @@ public class ParserTest {
         resetOptions();
         parser.reset();
         String val = "10";
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"--size=" + val});
-        Assert.assertEquals("Invalid first non-option argument index", 1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"--size=" + val});
+        Assert.assertEquals("Other args: wrong number", 0, otherArgs.length);
         Assert.assertTrue("Option not set (but should have been)", optSize.isSet());
         Assert.assertEquals("Wrong option's value", val, optSize.getValue());
     }
@@ -150,8 +150,8 @@ public class ParserTest {
     public void ParserInvalidLongOption_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"--test"});
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"--test"});
+        Assert.assertNull(otherArgs);
         String expectedErr = appName + ": invalid option -- 'test'\nTry '" + appName + " --help' for more information.";
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
@@ -160,9 +160,9 @@ public class ParserTest {
     public void ParserMissingArgLongOption_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"--size"});
+        String[] otherArgs = parser.parse(options, new String[] {"--size"});
         String expectedErr = appName + ": option 'size' requires an argument\nTry '" + appName + " --help' for more information.";
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        Assert.assertNull(otherArgs);
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
 
@@ -170,9 +170,9 @@ public class ParserTest {
     public void ParserUnexpectedArgLongOption_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"--verbose=true"});
+        String[] otherArgs = parser.parse(options, new String[] {"--verbose=true"});
         String expectedErr = appName + ": option 'verbose' does not require an argument\nTry '" + appName + " --help' for more information.";
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        Assert.assertNull(otherArgs);
         Assert.assertEquals("Wrong error msg", expectedErr, parser.getErrorMsg());
     }
 
@@ -180,24 +180,36 @@ public class ParserTest {
     public void ParserNoOptionsDetected_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"file1 file2"});
-        Assert.assertEquals("Invalid first non-option argument index", 0, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"file1", "file2"});
+        Assert.assertEquals("Other args: wrong number", 2, otherArgs.length);
+        Assert.assertTrue("Wrong arg", otherArgs[0].equals("file1"));
+        Assert.assertTrue("Wrong arg", otherArgs[1].equals("file2"));
     }
 
     @Test
-    public void ParserOptionBetweenOptions_TTP() {
+    public void ParserValidOptionBetweenOptions_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {"file1", "-n", "file2"});
-        Assert.assertEquals("Invalid first non-option argument index", -1, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {"file1", "-s", "10", "file2"});
+        Assert.assertEquals("Other args: wrong number", 2, otherArgs.length);
+        Assert.assertTrue("Wrong arg", otherArgs[0].equals("file1"));
+        Assert.assertTrue("Wrong arg", otherArgs[1].equals("file2"));
+    }
+    
+    @Test
+    public void ParserInvalidOptionBetweenOptions_TTP() {
+        resetOptions();
+        parser.reset();
+        String[] otherArgs = parser.parse(options, new String[] {"file1", "-n", "file2"});
+         Assert.assertNull(otherArgs);
     }
 
     @Test
     public void ParserNoOptionsDetectedNoArgs_TTP() {
         resetOptions();
         parser.reset();
-        int firstNonOptionArgIndex = parser.parse(options, new String[] {});
-        Assert.assertEquals("Invalid first non-option argument index", 0, firstNonOptionArgIndex);
+        String[] otherArgs = parser.parse(options, new String[] {});
+        Assert.assertEquals("Other args: wrong number", 0, otherArgs.length);
     }
 
     /**

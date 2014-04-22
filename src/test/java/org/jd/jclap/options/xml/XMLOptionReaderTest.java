@@ -1,11 +1,11 @@
 package org.jd.jclap.options.xml;
 
-import org.jd.jclap.options.Option;
-import org.jd.jclap.options.OptionSet;
-import org.jd.jclap.options.OptionWithValue;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import javax.xml.parsers.ParserConfigurationException;
+import org.jd.jclap.options.Option;
+import org.jd.jclap.options.OptionSet;
+import org.jd.jclap.options.OptionWithValue;
 import org.junit.Assert;
 import org.junit.Test;
 import org.xml.sax.SAXException;

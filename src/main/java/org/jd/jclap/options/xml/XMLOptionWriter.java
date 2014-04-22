@@ -1,8 +1,5 @@
 package org.jd.jclap.options.xml;
 
-import org.jd.jclap.options.Option;
-import org.jd.jclap.options.OptionSet;
-import org.jd.jclap.options.OptionWithValue;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -17,6 +14,9 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.jd.jclap.options.Option;
+import org.jd.jclap.options.OptionSet;
+import org.jd.jclap.options.OptionWithValue;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
